@@ -11,8 +11,14 @@ from api.fmp_client import get_company_data_for_ticker
 
 st.title("📈 Mini Security Master")
 
-# ticker = st.text_input("Enter a stock ticker", value="AAPL", max_chars=10) . . .
+ticker = st.text_input("Enter a stock ticker", value="AAPL", max_chars=10)
 
-aapl_data = get_company_data_for_ticker("AAPL")
+if ticker:
+    try:
+        company_data = get_company_data_for_ticker(ticker)
+        st.write(company_data)
+    except ValueError as e:
+        st.error(f"Error: {str(e)}")
+else:
+    st.warning("Please enter a ticker symbol")
 
-st.write(aapl_data)
