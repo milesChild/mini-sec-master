@@ -37,7 +37,7 @@ def get_company_data_for_ticker(ticker: str):
 
     if not isinstance(data, list):
         raise ValueError(f"Unexpected format: Response data for {ticker} is not a list")
-    
+
     company_data = data[0]
 
     return {
