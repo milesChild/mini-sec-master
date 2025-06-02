@@ -1,10 +1,12 @@
 """
 Streamlit UI for our mini security master.
 """
-
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 import streamlit as st
 
-from app.api.fmp_client import get_company_data_for_ticker
+from api.fmp_client import get_company_data_for_ticker
 
 st.title("📈 Mini Security Master")
 
