@@ -2,11 +2,13 @@
 Unit tests for the FMP client.
 """
 
+from unittest.mock import Mock, patch
+
 import pytest
-from unittest.mock import patch, Mock
 import requests
 
 from app.api.fmp_client import get_company_data_for_ticker
+
 
 # Tests that numeric input for ticker raises ValueError
 def test_raises_value_error_for_invalid_ticker():
@@ -59,7 +61,7 @@ def test_valid_ticker_returns_complete_data(mock_get):
     mock_get.side_effect = [profile_response, quote_response]
 
     result = get_company_data_for_ticker("AAPL")
-    
+
     assert result["name"] == "Apple Inc."
     assert result["description"] == "Apple designs smartphones and computers"
     assert result["price"] == 150.0
@@ -99,7 +101,7 @@ def test_different_valid_tickers(mock_get):
         }]
 
         mock_get.side_effect = [profile_response, quote_response]
-        
+
         result = get_company_data_for_ticker(ticker)
         assert result["name"] == data["name"]
         assert result["description"] == data["description"]
@@ -154,7 +156,7 @@ def test_ticker_with_whitespace(mock_get):
 
     mock_get.side_effect = [profile_response, quote_response]
     result = get_company_data_for_ticker(" AAPL ")
-    
+
     assert result["name"] == "Apple Inc."
     assert result["price"] == 150.0
 
@@ -365,7 +367,7 @@ def test_response_contains_required_fields(mock_get):
 
     mock_get.side_effect = [profile_response, quote_response]
     result = get_company_data_for_ticker("TEST")
-    
+
     required_fields = {"name", "description", "price", "currency"}
     assert all(field in result for field in required_fields)
 
