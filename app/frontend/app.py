@@ -13,4 +13,3 @@ st.title("📈 Mini Security Master")
 aapl_data = get_company_data_for_ticker("AAPL")
 
 st.write(aapl_data)
-
