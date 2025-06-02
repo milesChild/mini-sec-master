@@ -21,6 +21,8 @@ def get_company_data_for_ticker(ticker: str):
     ValueError
         If the ticker is invalid / not found.
     """
+    required_fields = ["companyName", "description", "price"]
+
     if not ticker:
         raise ValueError("Ticker cannot be empty")
     if not isinstance(ticker, str):
@@ -34,11 +36,8 @@ def get_company_data_for_ticker(ticker: str):
         raise ValueError("Ticker not found")
 
     company_data = response.json()[0]
-    if (
-        "companyName" not in company_data
-        or "description" not in company_data
-        or "price" not in company_data
-    ):
+
+    if not all(field in company_data for field in required_fields):
         raise ValueError("Incomplete company data")
 
-    return company_data
+    return {field: company_data[field] for field in required_fields}
