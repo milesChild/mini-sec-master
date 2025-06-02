@@ -23,7 +23,7 @@ def get_company_data_for_ticker(ticker: str):
         If there is no data found for the ticker.
     """
 
-    url = f"https://financialmodelingprep.com/stable/search-symbol?query={ticker}&apikey={_API_KEY}"
+    url = f"https://financialmodelingprep.com/api/v3/profile/{ticker}?apikey={_API_KEY}"
 
     response = requests.get(url)
 
@@ -37,5 +37,12 @@ def get_company_data_for_ticker(ticker: str):
 
     if not isinstance(data, list):
         raise ValueError(f"Unexpected format: Response data for {ticker} is not a list")
+    
+    company_data = data[0]
 
-    return data[0]
+    return {
+        "name": company_data.get("companyName"),
+        "description": company_data.get("description"),
+        "price": company_data.get("price")
+    }
+
