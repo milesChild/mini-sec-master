@@ -41,6 +41,7 @@ def get_company_data_for_ticker(ticker: str):
     company_data = data[0]
 
     return {
+        "ticker": company_data.get("symbol"),
         "name": company_data.get("companyName"),
         "description": company_data.get("description"),
         "price": company_data.get("price")

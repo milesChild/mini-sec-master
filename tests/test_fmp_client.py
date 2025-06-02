@@ -56,8 +56,10 @@ def test_missing_fields_in_response_missing_fields(mock_get):
     result = get_company_data_for_ticker("AAPL")
 
     # We check the function still returns whatever is there (or handle it differently if needed)
-    assert result["symbol"] == "AAPL"
-    assert "companyName" not in result
+    assert result["ticker"] == "AAPL"
+    assert result["name"] is None
+    assert result["description"] is None
+    assert result["price"] is None
 
 
 # test to see if the function is not a list
