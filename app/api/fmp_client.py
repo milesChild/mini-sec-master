@@ -118,3 +118,7 @@ def get_company_data_for_ticker(ticker: str | float | None) -> dict:
         if "Invalid JSON" in str(e):
             raise RuntimeError("API request failed: invalid JSON response") from None
         raise
+
+
+#dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+#dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
