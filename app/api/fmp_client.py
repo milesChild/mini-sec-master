@@ -21,7 +21,7 @@ def get_company_data_for_ticker(ticker: str):
     ValueError
         If the ticker is invalid / not found.
     """
-    required_fields = ["companyName", "description", "price"]
+    required_fields = ["companyName", "description", "price", "symbol"]
 
     if not ticker:
         raise ValueError("Ticker cannot be empty")
