@@ -1,0 +1,8 @@
+version: "3.9"  # this is the version of the docker compose file format
+services:
+  app:
+    build: .
+    ports:
+      - "8501:8501"  # this is a port mapping, which maps (left side) the port on your device (8501) to (right side) the port on the container (8501)
+    env_file:
+      - .env
